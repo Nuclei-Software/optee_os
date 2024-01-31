@@ -21,7 +21,8 @@ enum sbi_ext_id {
 	SBI_EXT_0_1_REMOTE_FENCE_I = 0x5,
 	SBI_EXT_0_1_REMOTE_SFENCE_VMA = 0x6,
 	SBI_EXT_0_1_REMOTE_SFENCE_VMA_ASID = 0x7,
-	SBI_EXT_0_1_SHUTDOWN = 0x8,
+	SBI_EXT_0_1_CURRENT_HART = 0x8,
+	SBI_EXT_0_1_SHUTDOWN = 0x9,
 #endif
 	SBI_EXT_BASE = 0x10,
 	SBI_EXT_TIME = 0x54494D45,
@@ -129,6 +130,8 @@ int sbi_remote_hfence_vvma_asid(const unsigned long *hart_mask,
 				unsigned long size,
 				unsigned long asid);
 int sbi_probe_extension(int ext);
+
+int sbi_read_hartid(void);
 
 /* Check if current SBI specification version is 0.1 or not */
 static inline int sbi_spec_is_0_1(void)

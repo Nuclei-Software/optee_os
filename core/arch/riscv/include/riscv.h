@@ -59,6 +59,7 @@
 
 #ifndef __ASSEMBLER__
 
+#ifdef CFG_SHART_FEATURE
 static inline __noprof unsigned long read_hartid(void)
 {
 	unsigned long hartid;
@@ -67,6 +68,7 @@ static inline __noprof unsigned long read_hartid(void)
 
 	return hartid;
 }
+#endif
 
 static inline __noprof void mb(void)
 {

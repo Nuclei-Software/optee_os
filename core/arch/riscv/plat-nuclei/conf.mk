@@ -76,4 +76,6 @@ $(call force,CFG_WITH_LPAE,y)
 $(call force,CFG_LPAE_ADDR_SPACE_BITS,39)
 $(call force,CFG_RISCV_TIME_SOURCE_RDTIME,y)
 $(call force,CFG_TEE_BENCHMARK,n)
+# Enable shart config for Nuclei Platform by default.
+$(call force,CFG_SHART_FEATURE,y)
 

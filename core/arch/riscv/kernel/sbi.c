@@ -83,6 +83,16 @@ void sbi_clear_ipi(void)
 {
 	sbi_ecall(SBI_EXT_0_1_CLEAR_IPI, 0, 0, 0, 0, 0, 0, 0);
 }
+
+int sbi_read_hartid(void)
+{
+	struct sbiret ret;
+
+	ret = sbi_ecall(SBI_EXT_0_1_CURRENT_HART, 0, 0, 0, 0, 0, 0, 0);
+
+	return ret.error;
+}
+
 #if 0
 /**
  * sbi_set_timer_v01() - Program the timer for next timer event.

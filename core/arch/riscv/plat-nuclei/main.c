@@ -7,6 +7,7 @@
 #include <mm/core_memprot.h>
 #include "stdio.h"
 #include <kernel/interrupt.h>
+#include <sbi.h>
 
 #define PLIC_CLAIM_SIZE         0x1000
 /*hart0 S mode*/
@@ -27,14 +28,18 @@ register_phys_mem(MEM_AREA_IO_SEC, PLIC_CLAIM_HART1_BASE, PLIC_CLAIM_HART1_SIZE)
 register_phys_mem(MEM_AREA_IO_SEC, PLIC_CLAIM_HART2_BASE, PLIC_CLAIM_HART2_SIZE);
 register_phys_mem(MEM_AREA_IO_SEC, PLIC_CLAIM_HART3_BASE, PLIC_CLAIM_HART3_SIZE);
 
-extern void sbi_console_putchar(int ch);
 volatile vaddr_t plic_claim_base = 0;
 void itr_core_handler(void)
 {
     int id;
     int hartid;
 
+#ifdef CFG_SHART_FEATURE
     hartid = read_hartid();
+#else
+    hartid = sbi_read_hartid();
+#endif
+
     sbi_console_putchar('0' + hartid);
     sbi_console_putchar('@');
     sbi_console_putchar('\n');
