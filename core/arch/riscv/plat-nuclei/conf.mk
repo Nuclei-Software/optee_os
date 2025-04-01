@@ -78,4 +78,9 @@ $(call force,CFG_RISCV_TIME_SOURCE_RDTIME,y)
 $(call force,CFG_TEE_BENCHMARK,n)
 # Enable shart config for Nuclei Platform by default.
 $(call force,CFG_SHART_FEATURE,y)
-
+$(call force,CFG_NUCLEI_HSM_CRYPTO,y)
+$(call force,CFG_CRYPTO_DRV_CIPHER,y)
+$(call force,CFG_CRYPTO_DRV_HASH,y)
+$(call force,CFG_CRYPTO_DRV_MAC,y)
+$(call force,CFG_CRYPTO_DRV_ACIPHER,y)
+$(call force,CFG_CRYPTO_DRV_RSA,y)
