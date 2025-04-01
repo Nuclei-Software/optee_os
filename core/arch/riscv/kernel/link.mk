@@ -21,6 +21,7 @@ link-ldflags += -T $(link-script-pp) -Map=$(link-out-dir)/tee.map
 link-ldflags += --sort-section=alignment
 link-ldflags += --fatal-warnings
 link-ldflags += --gc-sections
+link-ldflags += $(call ld-option,--no-warn-rwx-segments)
 
 link-ldadd  = $(LDADD)
 link-ldadd += $(ldflags-external)

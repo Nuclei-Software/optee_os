@@ -20,7 +20,7 @@ FUNC \name , :
 	.endm
 
 FUNC _utee_panic, :
-	j	__utee_panic
+	tail __utee_panic
 /* Not reached */
 END_FUNC _utee_panic
 
