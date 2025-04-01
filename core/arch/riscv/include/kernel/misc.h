@@ -18,7 +18,7 @@ static inline size_t __noprof get_core_pos(void)
 	assert(thread_get_exceptions() & THREAD_EXCP_FOREIGN_INTR);
 
 #ifdef CFG_SHART_FEATURE
-	return read_hartid();
+	return read_hartid() & 0xff;
 #else
 	return sbi_read_hartid();
 #endif

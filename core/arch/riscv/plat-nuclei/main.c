@@ -39,7 +39,7 @@ void itr_core_handler(void)
 #else
     hartid = sbi_read_hartid();
 #endif
-
+    hartid = hartid & 0xFF;
     sbi_console_putchar('0' + hartid);
     sbi_console_putchar('@');
     sbi_console_putchar('\n');
