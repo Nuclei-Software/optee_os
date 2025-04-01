@@ -10,7 +10,7 @@ srcs-$(CFG_RISCV_TIME_SOURCE_RDTIME) += tee_time_rdtime.c
 srcs-y += spinlock.S
 
 srcs-y += tlb_helpers_rv.S
-srcs-y += cache_helpers_a64.S
+srcs-y += cache_helpers.c
 
 
 srcs-y += thread_rv.S

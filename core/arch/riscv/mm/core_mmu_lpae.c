@@ -830,10 +830,35 @@ void tlbi_mva_range_asid(vaddr_t va, size_t len, size_t granule, uint32_t asid)
 
 TEE_Result cache_op_inner(enum cache_op op, void *va, size_t len)
 {
-	(void)op;
-	(void)va;
-	(void)len;
-	return TEE_SUCCESS;
+	switch (op) {
+		case DCACHE_CLEAN:
+			dcache_op_all(DCACHE_OP_CLEAN);
+			break;
+		case DCACHE_AREA_CLEAN:
+			dcache_clean_range(va, len);
+			break;
+		case DCACHE_INVALIDATE:
+			dcache_op_all(DCACHE_OP_INV);
+			break;
+		case DCACHE_AREA_INVALIDATE:
+			dcache_inv_range(va, len);
+			break;
+		case ICACHE_INVALIDATE:
+			icache_inv_all();
+			break;
+		case ICACHE_AREA_INVALIDATE:
+			icache_inv_range(va, len);
+			break;
+		case DCACHE_CLEAN_INV:
+			dcache_op_all(DCACHE_OP_CLEAN_INV);
+			break;
+		case DCACHE_AREA_CLEAN_INV:
+			dcache_cleaninv_range(va, len);
+			break;
+		default:
+			return TEE_ERROR_NOT_IMPLEMENTED;
+		}
+		return TEE_SUCCESS;
 }
 
 unsigned int asid_alloc(void)
