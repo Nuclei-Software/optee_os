@@ -275,10 +275,21 @@ static bool is_vfp_fault(struct abort_info *ai)
 	#define RV64_FP_INST_LOAD	0x7
 	#define RV64_FP_INST_STORE	0x27
 	#define RV64_FP_INST_OP		0x53
+	/* Compressed FP bit[0,1]=00 */
+	#define RV64_FP_INST_LOAD_C		(0x1 << 13)
+	#define RV64_FP_INST_STORE_C	(0x5 << 13)
+	#define RV64_FP_INST_C_MASK		0xE000
+
 	if (ai->regs->cause	== CAUSE_ILLEGAL_INSTRUCTION) {
 		if ((ai->regs->tval & 0x7F) == RV64_FP_INST_LOAD || \
 			(ai->regs->tval & 0x7F) == RV64_FP_INST_STORE || \
 			(ai->regs->tval & 0x7F) == RV64_FP_INST_OP) {
+				return true;
+			}
+		/* Deal with FP compressed inst */
+		if (((ai->regs->tval & 0x3) == 0 || (ai->regs->tval & 0x3) == 2) && \
+			(((ai->regs->tval & RV64_FP_INST_C_MASK) == RV64_FP_INST_LOAD_C) || \
+			((ai->regs->tval & RV64_FP_INST_C_MASK) == RV64_FP_INST_STORE_C))) {
 				return true;
 			}
 	}

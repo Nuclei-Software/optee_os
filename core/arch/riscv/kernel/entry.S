@@ -44,7 +44,7 @@ FUNC _start , :
 #else
 	mv	s2, a2 /* save dts address to s2 */
 #endif
-
+	la	gp, __global_pointer$
 	la	a0, reset_vect_table
 	csrw	stvec, a0
 	fence
@@ -185,7 +185,7 @@ FUNC cpu_on_handler , :
 	mv	s1, a0
 	mv	s2, a1
 	mv	s3, ra
-
+	la	gp, __global_pointer$
 	la	a0, reset_vect_table
 	csrw	stvec, a0
 	fence
