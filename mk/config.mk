@@ -39,10 +39,10 @@ WARNS ?= 3
 PYTHON3 ?= python3
 
 # Define DEBUG=1 to compile without optimization (forces -O0)
-DEBUG = 1
+#DEBUG = 1
 ifeq ($(DEBUG),1)
 # For backwards compatibility
-$(call force,CFG_CC_OPT_LEVEL,1)
+$(call force,CFG_CC_OPT_LEVEL,0)
 $(call force,CFG_DEBUG_INFO,y)
 endif
 
