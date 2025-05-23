@@ -48,7 +48,7 @@ endif
 
 # CFG_CC_OPT_LEVEL sets compiler optimization level passed with -O directive.
 # Optimize for size by default, usually gives good performance too.
-CFG_CC_OPT_LEVEL ?= 0
+CFG_CC_OPT_LEVEL ?= s
 
 # Enabling CFG_DEBUG_INFO makes debug information embedded in core.
 CFG_DEBUG_INFO ?= y
