@@ -13,8 +13,9 @@ FUNC \name , :
 	.error "Too many arguments for syscall"
 	.endif
 
-	li	t0, \scn
+	li t0, \scn
 	ecall
+	sext.w a0, a0
 	ret
 	END_FUNC \name
 	.endm
