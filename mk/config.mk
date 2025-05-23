@@ -39,16 +39,16 @@ WARNS ?= 3
 PYTHON3 ?= python3
 
 # Define DEBUG=1 to compile without optimization (forces -O0)
-DEBUG = 1
+#DEBUG = 1
 ifeq ($(DEBUG),1)
 # For backwards compatibility
-$(call force,CFG_CC_OPT_LEVEL,1)
+$(call force,CFG_CC_OPT_LEVEL,0)
 $(call force,CFG_DEBUG_INFO,y)
 endif
 
 # CFG_CC_OPT_LEVEL sets compiler optimization level passed with -O directive.
 # Optimize for size by default, usually gives good performance too.
-CFG_CC_OPT_LEVEL ?= s
+CFG_CC_OPT_LEVEL ?= 0
 
 # Enabling CFG_DEBUG_INFO makes debug information embedded in core.
 CFG_DEBUG_INFO ?= y
