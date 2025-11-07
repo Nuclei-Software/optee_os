@@ -8,19 +8,20 @@
 #include "stdio.h"
 #include <kernel/interrupt.h>
 #include <sbi.h>
+#include <platform_config.h>
 
-#define PLIC_CLAIM_SIZE         0x1000
+#define PLIC_CLAIM_SIZE       0x1000UL
 /*hart0 S mode*/
-#define PLIC_CLAIM_HART0_BASE 0x1c201000
+#define PLIC_CLAIM_HART0_BASE (PLIC_BASE + 0x201000)
 #define PLIC_CLAIM_HART0_SIZE PLIC_CLAIM_SIZE
 /*hart1 S mode*/
-#define PLIC_CLAIM_HART1_BASE 0x1c203000
+#define PLIC_CLAIM_HART1_BASE (PLIC_BASE + 0x203000)
 #define PLIC_CLAIM_HART1_SIZE PLIC_CLAIM_SIZE
 /*hart2 S mode*/
-#define PLIC_CLAIM_HART2_BASE 0x1c205000
+#define PLIC_CLAIM_HART2_BASE (PLIC_BASE + 0x205000)
 #define PLIC_CLAIM_HART2_SIZE PLIC_CLAIM_SIZE
 /*hart3 S mode*/
-#define PLIC_CLAIM_HART3_BASE 0x1c207000
+#define PLIC_CLAIM_HART3_BASE (PLIC_BASE + 0x207000)
 #define PLIC_CLAIM_HART3_SIZE PLIC_CLAIM_SIZE
 
 register_phys_mem(MEM_AREA_IO_SEC, PLIC_CLAIM_HART0_BASE, PLIC_CLAIM_HART0_SIZE);

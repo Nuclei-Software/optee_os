@@ -16,4 +16,9 @@
 #define RISCV_MTIME_RATE 32768
 #endif
 
+#define NUCLEI_MAILBOX_BASE       (0x97000000UL)
+#define NUCLEI_MAILBOX_SIZE       (0x4000UL)
+
+#define PLIC_BASE                 (0x1c000000UL)
+
 #endif
